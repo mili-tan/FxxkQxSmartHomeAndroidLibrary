@@ -1,4 +1,4 @@
-package lib;
+package com.bizideal.smarthometest.lib;
 
 import android.os.Handler;
 import android.os.Message;

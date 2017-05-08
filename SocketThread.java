@@ -1,13 +1,13 @@
-package lib;
+package com.bizideal.smarthometest.lib;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import com.bizideal.smarthometest.lib.json_dispose;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import lib.json_dispose;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +63,6 @@ public class SocketThread {
 
                      try {
                         SocketThread.receive_json = new JSONObject(buf_string);
-                        System.out.println(SocketThread.receive_json);
                         if(SocketThread.receive_json.get("state").equals("Success")) {
                            SocketThread.operation_succeed_flag = true;
                            SocketThread.receive_jsonArray = SocketThread.receive_json.getJSONArray("Data");
@@ -129,7 +128,7 @@ public class SocketThread {
       }
 
       try {
-         receive_data.put("PM2.5", jsonObject.get("PM2.5"));
+         receive_data.put("PM25", jsonObject.get("PM25"));
       } catch (JSONException var14) {
          var14.printStackTrace();
       }

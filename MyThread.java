@@ -1,8 +1,8 @@
-package lib;
+package com.bizideal.smarthometest.lib;
 
+import com.bizideal.smarthometest.lib.SocketThread;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import lib.SocketThread;
 
 public class MyThread implements Runnable {
 

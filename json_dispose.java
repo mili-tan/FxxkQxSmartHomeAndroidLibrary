@@ -1,8 +1,8 @@
-package lib;
+package com.bizideal.smarthometest.lib;
 
+import com.bizideal.smarthometest.lib.SocketThread;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import lib.SocketThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +30,7 @@ public class json_dispose {
          receive_data.put("Illumination", "0");
          receive_data.put("Smoke", "0");
          receive_data.put("Gas", "0");
-         receive_data.put("PM2.5", "0");
+         receive_data.put("PM25", "0");
          receive_data.put("Co2", "0");
          receive_data.put("AirPressure", "0");
          receive_data.put("StateHumanInfrared", "0");

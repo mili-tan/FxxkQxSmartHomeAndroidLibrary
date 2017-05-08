@@ -1,4 +1,4 @@
-package lib;
+package com.bizideal.smarthometest.lib;
 
 
 public class Json_data {
@@ -20,7 +20,7 @@ public class Json_data {
    public static final String Illumination = "Illumination";
    public static final String Smoke = "Smoke";
    public static final String Gas = "Gas";
-   public static final String PM25 = "PM2.5";
+   public static final String PM25 = "PM25";
    public static final String Co2 = "Co2";
    public static final String AirPressure = "AirPressure";
    public static final String RFIDTag = "RFIDTag";
@@ -59,6 +59,12 @@ public class Json_data {
    public static final String RFID_Write_Data = "RFID_Write_Data";
    public static final String RFID_Auto_Read_Tag = "RFID_Auto_Read_Tag";
    public static final String Data = "Data";
+   public static final String Illumination_mode = "Illumination_mode";
+   public static final String Temperature_mode = "Temperature_mode";
+   public static final String Security_mode = "Security_mode";
+   public static final String Home_mode = "Home_mode";
+   public static final String Sleep_mode = "Sleep_mode";
+   public static final String Wake_up_mode = "Wake_up_mode";
    public static final String InfraredLaunch = "InfraredLaunch";
 
 
