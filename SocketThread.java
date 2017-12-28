@@ -90,34 +90,35 @@
 /*  90 */               buf_int[1] = 45;
 /*     */               
 /*     */ 
-/*  93 */               if (SocketThread.Socket_time != 0)
+/*     */ 
+/*  94 */               if (SocketThread.Socket_time != 0)
 /*     */               {
-/*  95 */                 SocketThread.out.write(SocketThread.databuff.getBytes());
-/*  96 */                 SocketThread.out.writeChars("\r\n");
-/*  97 */                 SocketThread.operation_succeed_flag = false;
+/*  96 */                 SocketThread.out.write(SocketThread.databuff.getBytes());
+/*  97 */                 SocketThread.out.writeChars("\r\n");
+/*  98 */                 SocketThread.operation_succeed_flag = false;
 /*     */               }
-/*  99 */               SocketThread.Socket_time += 1;
-/* 100 */               String buf_string = rec.readLine();
+/* 100 */               SocketThread.Socket_time += 1;
+/* 101 */               String buf_string = rec.readLine();
 /*     */               
 /*     */ 
 /*     */               try
 /*     */               {
-/* 105 */                 SocketThread.receive_json = new JSONObject(buf_string);
-/* 106 */                 System.out.println(SocketThread.receive_json);
-/* 107 */                 if (SocketThread.receive_json.get("state").equals("Success"))
+/* 106 */                 SocketThread.receive_json = new JSONObject(buf_string);
+/*     */                 
+/* 108 */                 if (SocketThread.receive_json.get("state").equals("Success"))
 /*     */                 {
-/* 109 */                   SocketThread.operation_succeed_flag = true;
-/* 110 */                   SocketThread.receive_jsonArray = SocketThread.receive_json.getJSONArray("Data");
-/* 111 */                   SocketThread.receive_json = SocketThread.receive_jsonArray.getJSONObject(0);
-/* 112 */                   SocketThread.Updata_receive_data(SocketThread.receive_json, json_dispose.receive_data);
+/* 110 */                   SocketThread.operation_succeed_flag = true;
+/* 111 */                   SocketThread.receive_jsonArray = SocketThread.receive_json.getJSONArray("Data");
+/* 112 */                   SocketThread.receive_json = SocketThread.receive_jsonArray.getJSONObject(0);
+/* 113 */                   SocketThread.Updata_receive_data(SocketThread.receive_json, json_dispose.receive_data);
 /*     */                 }
 /*     */                 else
 /*     */                 {
-/* 116 */                   SocketThread.operation_succeed_flag = false;
+/* 117 */                   SocketThread.operation_succeed_flag = false;
 /*     */                 }
 /*     */               }
 /*     */               catch (Exception e) {
-/* 120 */                 System.out.println("无数据");
+/* 121 */                 System.out.println("无数据");
 /*     */               }
 /*     */               
 /*     */ 
@@ -127,29 +128,29 @@
 /*     */ 
 /*     */ 
 /*     */ 
-/* 130 */               SocketThread.State_Thread = false;
+/* 131 */               SocketThread.State_Thread = false;
 /*     */             }
 /*     */             
 /*     */ 
-/* 134 */             SocketThread.socket.close();
-/* 135 */             SocketThread.Socket_flag = false;
+/* 135 */             SocketThread.socket.close();
+/* 136 */             SocketThread.Socket_flag = false;
 /*     */           }
 /*     */           else
 /*     */           {
-/* 139 */             SocketThread.socket.close();
-/* 140 */             SocketThread.Socket_flag = false;
+/* 140 */             SocketThread.socket.close();
+/* 141 */             SocketThread.Socket_flag = false;
 /*     */           }
 /*     */           
 /*     */         }
 /*     */         catch (Exception e)
 /*     */         {
-/* 146 */           Message msg = new Message();
-/* 147 */           Bundle b = new Bundle();
-/* 148 */           b.putString("SocketThread_State", "error");
-/* 149 */           SocketThread.Socket_flag = false;
-/* 150 */           msg.setData(b);
-/* 151 */           SocketThread.mHandlerSocketState.sendMessage(msg);
-/* 152 */           System.out.println(e);
+/* 147 */           Message msg = new Message();
+/* 148 */           Bundle b = new Bundle();
+/* 149 */           b.putString("SocketThread_State", "error");
+/* 150 */           SocketThread.Socket_flag = false;
+/* 151 */           msg.setData(b);
+/* 152 */           SocketThread.mHandlerSocketState.sendMessage(msg);
+/* 153 */           System.out.println(e);
 /*     */         }
 /*     */       }
 /*     */     }.start();
@@ -157,129 +158,129 @@
 /*     */   
 /*     */   private static void Updata_receive_data(JSONObject jsonObject, JSONObject receive_data) {
 /*     */     try {
-/* 160 */       receive_data.put("Temp", jsonObject.get("Temp"));
+/* 161 */       receive_data.put("Temp", jsonObject.get("Temp"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 164 */       e.printStackTrace();
+/* 165 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 167 */       receive_data.put("Humidity", jsonObject.get("Humidity"));
+/* 168 */       receive_data.put("Humidity", jsonObject.get("Humidity"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 171 */       e.printStackTrace();
+/* 172 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 174 */       receive_data.put("Illumination", jsonObject.get("Illumination"));
+/* 175 */       receive_data.put("Illumination", jsonObject.get("Illumination"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 178 */       e.printStackTrace();
+/* 179 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 181 */       receive_data.put("Smoke", jsonObject.get("Smoke"));
+/* 182 */       receive_data.put("Smoke", jsonObject.get("Smoke"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 185 */       e.printStackTrace();
+/* 186 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 188 */       receive_data.put("Gas", jsonObject.get("Gas"));
+/* 189 */       receive_data.put("Gas", jsonObject.get("Gas"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 192 */       e.printStackTrace();
+/* 193 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 195 */       receive_data.put("PM2.5", jsonObject.get("PM2.5"));
+/* 196 */       receive_data.put("PM25", jsonObject.get("PM25"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 199 */       e.printStackTrace();
+/* 200 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 202 */       receive_data.put("Co2", jsonObject.get("Co2"));
+/* 203 */       receive_data.put("Co2", jsonObject.get("Co2"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 206 */       e.printStackTrace();
+/* 207 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 209 */       receive_data.put("AirPressure", jsonObject.get("AirPressure"));
+/* 210 */       receive_data.put("AirPressure", jsonObject.get("AirPressure"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 213 */       e.printStackTrace();
+/* 214 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 216 */       receive_data.put("StateHumanInfrared", jsonObject.get("StateHumanInfrared"));
+/* 217 */       receive_data.put("StateHumanInfrared", jsonObject.get("StateHumanInfrared"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 220 */       e.printStackTrace();
+/* 221 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 223 */       receive_data.put("StateHelpButton", jsonObject.get("StateHelpButton"));
+/* 224 */       receive_data.put("StateHelpButton", jsonObject.get("StateHelpButton"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 227 */       e.printStackTrace();
+/* 228 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 230 */       receive_data.put("RFIDTag", jsonObject.get("RFIDTag"));
+/* 231 */       receive_data.put("RFIDTag", jsonObject.get("RFIDTag"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 234 */       e.printStackTrace();
+/* 235 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 237 */       receive_data.put("RFIDData", jsonObject.get("RFIDData"));
+/* 238 */       receive_data.put("RFIDData", jsonObject.get("RFIDData"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 241 */       e.printStackTrace();
+/* 242 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 244 */       receive_data.put("Relay4State", jsonObject.get("Relay4State"));
+/* 245 */       receive_data.put("Relay4State", jsonObject.get("Relay4State"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 248 */       e.printStackTrace();
+/* 249 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 251 */       receive_data.put("FanState", jsonObject.get("FanState"));
+/* 252 */       receive_data.put("FanState", jsonObject.get("FanState"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 255 */       e.printStackTrace();
+/* 256 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 258 */       receive_data.put("CurtainState", jsonObject.get("CurtainState"));
+/* 259 */       receive_data.put("CurtainState", jsonObject.get("CurtainState"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 262 */       e.printStackTrace();
+/* 263 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 265 */       receive_data.put("LampState", jsonObject.get("LampState"));
+/* 266 */       receive_data.put("LampState", jsonObject.get("LampState"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 269 */       e.printStackTrace();
+/* 270 */       e.printStackTrace();
 /*     */     }
 /*     */     try {
-/* 272 */       receive_data.put("WarningLightState", jsonObject.get("WarningLightState"));
+/* 273 */       receive_data.put("WarningLightState", jsonObject.get("WarningLightState"));
 /*     */     }
 /*     */     catch (JSONException e)
 /*     */     {
-/* 276 */       e.printStackTrace();
+/* 277 */       e.printStackTrace();
 /*     */     }
 /*     */   }
 /*     */ }
 
 
-/* Location:              F:\lib_2015_12_31.jar!\lib\SocketThread.class
+/* Location:              F:\使用材料\安卓更新V2.0\库文件\smarthometest.jar!\lib\SocketThread.class
  * Java compiler version: 6 (50.0)
  * JD-Core Version:       0.7.1
  */
